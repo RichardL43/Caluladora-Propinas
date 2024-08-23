@@ -73,17 +73,20 @@
     .del-btn[data-running="true"] .del-btn__icon-can-fill,
     .del-btn[data-running="true"] .del-btn__letter,
     .del-btn[data-running="true"] .del-btn__letter-box {
-        animation: trashLid 2s cubic-bezier(0.77,0,0.18,1) forwards;
+        animation: trashLid 1s cubic-bezier(0.77,0,0.18,1) forwards;
     }
     .del-btn[data-running="true"] .del-btn__icon-can {
         animation-name: trashCan;
+        animation-duration: 1s;
     }
     .del-btn[data-running="true"] .del-btn__icon-can-fill {
         animation-name: trashCanFill;
+        animation-duration: 1s;
     }
     .del-btn[data-running="true"] .del-btn__letter-box {
         animation-name: letterDrop;
         animation-timing-function: cubic-bezier(0.77,0,1,1);
+        animation-duration: 1s;
     }
     .del-btn[data-running="true"] .del-btn__letter-box:nth-child(1) .del-btn__letter {
         animation-name: letter1;
