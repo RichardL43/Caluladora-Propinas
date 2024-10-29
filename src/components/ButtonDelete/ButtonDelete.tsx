@@ -1,25 +1,28 @@
 import { useState } from 'react';
 import './ButtonDelete.css';
 import { MenuItem, OrderItem } from '../../types';
+import { OrderAction } from '../../reducer/order-reducer';
 
 type TypesProps = {
-	removeItem: (id: MenuItem['id']) => void;
+	// removeItem: (id: MenuItem['id']) => void;
+	dispatch: React.Dispatch<OrderAction>
+
 	item: OrderItem;
 }
 
-export const ButtonDelete = ({ removeItem, item }: TypesProps) => {
+export const ButtonDelete = ({ dispatch, item }: TypesProps) => {
 	const [isRunning, setIsRunning] = useState<boolean>(false);
 	const [itemIdToRemove, setItemIdToRemove] = useState<MenuItem['id'] | null>(null);
 
 	const handleClick = () => {
 		setIsRunning(true);
-		setItemIdToRemove(item.id);  
+		setItemIdToRemove(item.id);
 	};
 
 	const handleAnimationEnd = () => {
 		if (itemIdToRemove !== null) {
-			removeItem(itemIdToRemove);  
-			setItemIdToRemove(null);      
+			dispatch({ type: "remove-item", payload: { id: itemIdToRemove } });
+			setItemIdToRemove(null);
 		}
 		setIsRunning(false);
 	};
@@ -56,7 +59,7 @@ export const ButtonDelete = ({ removeItem, item }: TypesProps) => {
 				className="del-btn__letters"
 				aria-hidden="true"
 				data-anim
-				onAnimationEnd={handleAnimationEnd}  // Usando onAnimationEnd directamente
+				onAnimationEnd={handleAnimationEnd}
 			>
 				<span className="del-btn__letter-box">
 					<span className="del-btn__letter">D</span>

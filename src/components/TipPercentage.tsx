@@ -1,28 +1,17 @@
-import { Dispatch, SetStateAction } from "react"
+import { OrderAction } from "../reducer/order-reducer"
+
 const tipOptions = [
-    {
-        id: 'tip-10',
-        value: .10,
-        label: '10%'
-    },
-    {
-        id: 'tip-20',
-        value: .20,
-        label: '20%'
-    },
-    {
-        id: 'tip-50',
-        value: .50,
-        label: '50%'
-    },
+    {id: 'tip-10',value: .10,label: '10%'},
+    {id: 'tip-20',value: .20,label: '20%'},
+    {id: 'tip-50',value: .50,label: '50%'},
 ]
 
 type TipPercentageFormProps = {
-    setTip: Dispatch<SetStateAction<number>>
+    dispatch: React.Dispatch<OrderAction>
     tip: number
 }
 
-export const TipPercentage = ({setTip, tip} : TipPercentageFormProps) => {
+export const TipPercentage = ({dispatch, tip} : TipPercentageFormProps) => {
     return (
         <>
             <div>
@@ -37,7 +26,7 @@ export const TipPercentage = ({setTip, tip} : TipPercentageFormProps) => {
                                 type="radio"
                                 name="tipMap"
                                 value={tipMap.value}
-                                onChange={e => setTip(+e.target.value )}
+                                onChange={(e) => dispatch({type: 'add-tip',payload: {value: +e.target.value} } )}
                                 checked={tipMap.value === tip}
                             />
                         </div>
